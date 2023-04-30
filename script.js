@@ -1,6 +1,8 @@
 const container = document.getElementById('container');
 
 function makeGrid(rows, columns) {
+    container.style.setProperty('--grid-columns', columns)
+    container.style.setProperty('--grid-rows', rows)
     for (let i = 0; i < rows * columns; i++) {
         let cell = document.createElement('div');
         cell.style.backgroundColor = 'azure'
