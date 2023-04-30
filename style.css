@@ -5,15 +5,25 @@
 
 body {
   display: flex;
+  flex-direction: column;
+  gap: 50px;
   background-color: rgb(229, 229, 229);
+}
+
+#buttons {
+  margin: auto;
 }
 
 #container {
   display: grid;
-  grid-template-rows: repeat(var(--grid-rows), 50px);
-  grid-template-columns: repeat(var(--grid-columns), 50px);
+  width: 800px;
+  height: 800px;
+  grid-template-rows: repeat(var(--grid-rows), auto);
+  grid-template-columns: repeat(var(--grid-columns), auto);
   border-style: solid;
+  border-color: red;
   margin: auto;
+  box-shadow: 0px 0px 15px #000000;
 }
 
 .cell {

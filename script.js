@@ -1,23 +1,55 @@
+let gridSize = 16;
+
+const buttons = document.getElementById('buttons');
 const container = document.getElementById('container');
 
 function makeGrid(rows, columns) {
+    container.textContent = '';
     container.style.setProperty('--grid-columns', columns)
     container.style.setProperty('--grid-rows', rows)
     for (let i = 0; i < rows * columns; i++) {
         let cell = document.createElement('div');
-        cell.style.backgroundColor = 'azure'
+        cell.style.backgroundColor = 'whitesmoke'
         container.appendChild(cell).className = 'cell';
     }
 }
 
-makeGrid(16, 16);
+function hoverCell() {
+    let cells = document.querySelectorAll('.cell');
 
-let cells = document.querySelectorAll('.cell');
-const hoverEffect = (e) => {
-    e.target.style.transition = '150ms';
-    e.target.style.borderColor = 'red';
-    e.target.style.backgroundColor = 'darkred';
+    const hoverEffect = (e) => {
+        e.target.style.transition = '150ms';
+        e.target.style.borderColor = 'red';
+        e.target.style.backgroundColor = 'darkred';
+    }
+    cells.forEach(cell => {
+        cell.addEventListener('mouseover', hoverEffect, { once: true });
+    })
 }
-cells.forEach(cell => {
-    cell.addEventListener('mouseover', hoverEffect, { once: true });
-})
+
+function setGridSize() {
+    let tempGridSize = prompt('Enter grid-size(max: 100):');
+    while (tempGridSize > 100 || tempGridSize < 1) {
+        tempGridSize = prompt('Please enter a positive value below 100:');
+    }
+    gridSize = tempGridSize;
+}
+
+
+const button = document.createElement('button');
+button.textContent = 'Grid-size';
+button.style.fontSize = '24px';
+buttons.appendChild(button);
+
+button.addEventListener(
+    'click',
+    () => setGridSize()
+);
+button.addEventListener(
+    'click',
+    () => makeGrid(gridSize, gridSize)
+);
+button.addEventListener(
+    'click',
+    () => hoverCell()
+);
